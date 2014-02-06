@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import edu.uci.ics.genomix.data.types.Kmer;
 import edu.uci.ics.genomix.data.types.ReadHeadInfo;
 import edu.uci.ics.genomix.pregelix.base.VertexValueWritable;
+import edu.uci.ics.genomix.pregelix.operator.complexbubblemerge.BubbleMergeWithSearchVertexValueWritable.EdgeTypeList;
 
 public class RayValue extends VertexValueWritable {
     private static final long serialVersionUID = 1L;
