@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1025,6 +1026,7 @@ public class RayVertex extends DeBruijnGraphCleanVertex<RayValue, RayMessage> {
                 }
             }
             // the walk is then passed on to the single remaining node
+            getVertexValue().setNeighbors(dominantEdgeType, dominantKmer, kmerSize);
             outgoingMsg.reset();
             outgoingMsg.setMessageType(RayMessageType.CONTINUE_WALK);
             outgoingMsg.setEdgeTypeBackToFrontier(dominantEdgeType.mirror());
@@ -1082,6 +1084,8 @@ public class RayVertex extends DeBruijnGraphCleanVertex<RayValue, RayMessage> {
 		 return null;
 		
 	}
+	
+
 
     public static PregelixJob getConfiguredJob(
             GenomixJobConf conf,
