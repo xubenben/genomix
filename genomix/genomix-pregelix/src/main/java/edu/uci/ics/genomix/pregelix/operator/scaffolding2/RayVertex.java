@@ -1084,7 +1084,7 @@ public class RayVertex extends DeBruijnGraphCleanVertex<RayValue, RayMessage> {
 		 return null;
 		
 	}
-	
+
 
 
     public static PregelixJob getConfiguredJob(

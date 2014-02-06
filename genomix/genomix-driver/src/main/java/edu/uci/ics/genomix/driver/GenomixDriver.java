@@ -229,7 +229,7 @@ public class GenomixDriver {
                         ShiftLowCoverageReadSetVertex.class));
                 break;
                 **/
-            case LOW_COVERAGE:
+            case REMOVE_LOW_COVERAGE:
                 pregelixJobs.add(RemoveLowCoverageVertex.getConfiguredJob(conf, RemoveLowCoverageVertex.class));
                 break;
             case BRIDGE:

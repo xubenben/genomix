@@ -314,4 +314,7 @@ public class RayValue extends VertexValueWritable {
 		}
 		
 	}
+
+	
+
 }
