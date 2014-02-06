@@ -1,4 +1,4 @@
-package edu.uci.ics.genomix.preglix.operator.prune;
+package edu.uci.ics.genomix.pregelix.operator.prune;
 
 import java.util.Iterator;
 
