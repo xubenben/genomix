@@ -14,6 +14,12 @@ public class PruneVertex extends DeBruijnGraphCleanVertex<PruneValue, PruneMessa
 		PruneValue vertex = getVertexValue();
 		PruneMessage msg = new PruneMessage();
 		DIR dir = DIR.FORWARD;
+		sendPruneMsgAndRemoveEdge(vertex, msg, dir);
+		dir = DIR.REVERSE;
+		sendPruneMsgAndRemoveEdge(vertex, msg, dir);
+	}
+
+	public void sendPruneMsgAndRemoveEdge(PruneValue vertex, PruneMessage msg, DIR dir) {
 		if(vertex.getVisitedList().size() > 0){
 			for (EDGETYPE et : dir.edgeTypes()) {
                 for (VKmer next : vertex.getEdges(et)) {
@@ -29,19 +35,26 @@ public class PruneVertex extends DeBruijnGraphCleanVertex<PruneValue, PruneMessa
 		}
 	}
 	
-	public void recievePruneGraphMsg(PruneMessage msg){
+	public void recievePruneGraphMsg(Iterator<PruneMessage> msgIterator){
 		PruneValue vertex = new PruneValue();
-		if(vertex.getVisitedList().size() > 0){
-             vertex.getEdges(msg.getToPruneEdge()).remove(msg.getToPruneId());
- 
-        }
+		while(msgIterator.hasNext()){
+			PruneMessage msg = msgIterator.next();
+			if(vertex.getVisitedList().size() > 0){
+				vertex.getEdges(msg.getToPruneEdge()).remove(msg.getToPruneId(), true);
+			}
+		}
 	}
 	
 	
 	@Override
 	public void compute(Iterator<PruneMessage> msgIterator) throws Exception {
 		// TODO Auto-generated method stub
-		
+		if (getSuperstep() == 1) {
+			sendPruneGraphMsg();
+        }else if (getSuperstep() == 2){
+        	recievePruneGraphMsg(msgIterator);
+        }
+		voteToHalt();
 	}
 
 }

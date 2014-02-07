@@ -290,6 +290,8 @@ public class RayVertex extends DeBruijnGraphCleanVertex<RayValue, RayMessage> {
     	vertex.setVisitedList(tmp);
         } 
         
+        //Add the previous node to neighbor bitset
+        getVertexValue().setNeighbors(msg.getEdgeTypeBackToPrev(), msg.getSourceVertexId(), kmerSize);
         if (msg.getWalkLength() == 0){
         	List <VKmer> visit = vertex.getVisitedList();
         	visit.add(id);
